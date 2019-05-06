@@ -1,39 +1,47 @@
 package ch07;
 
-interface Countable{
-   void count();
+abstract class Countable{
+   protected String name;
+   protected int num;
+   Countable(String name, int num){
+      this.name =name;
+      this.num = num;
+   }
+   abstract void count();
    
 }
-class Bird implements Countable
+class Bird extends Countable
 {
-   String name;
-   Bird(String name){
-      this.name= name;
+   Bird(String name, int num){
+      super(name,num);
+      
    }
    
    void fly() {
-      System.out.println("2¸¶¸®"+name+"°¡ ³¯¾Æ°£´Ù.");
+      System.out.println(num+"ë§ˆë¦¬"+name+"ê°€ ë‚ ì•„ê°„ë‹¤.");
    }
    public void count() {
-      System.out.println(name+"2¸¶¸® ÀÖ´Ù.");
+      System.out.println(name+"ì´ê°€"+num+"ë§ˆë¦¬ìˆë‹¤.");
    }
 }
-class Tree implements Countable
+class Tree extends Countable
 {
-   String name;
-   Tree(String name){this.name= name;}
+   
+   Tree(String name, int num){
+      super(name,num);
+   }
    void ripen() {
-      System.out.println(name+"¿¡ ¿­¸Å°¡ Àß ÀÍ¾ú´Ù.");
+      System.out.println(num+"ê·¸ë£¨"+name+"ì— ì—´ë§¤ê°€ ì˜ ìµì—ˆë‹¤.");
    }
    public void count() {
-      System.out.println(name+"5±×·ç ÀÖ´Ù.");
+      System.out.println(name+"ê°€"+num+"ê·¸ë£¨ ìˆë‹¤.");
       }
 }
 public class CountableTest {
 
    public static void main(String[] args) {
       // TODO Auto-generated method stub
-      Countable[] m= { new Bird("»µ²Ù±â"), new Bird("µ¶¼ö¸®"), new Tree("»ç°ú³ª¹«"),new Tree("¹ã³ª¹«")};
+      Countable[] m= { new Bird("ë»ê¾¸ê¸°",5), new Bird("ë…ìˆ˜ë¦¬",2), new Tree("ì‚¬ê³¼ë‚˜ë¬´",10),new Tree("ë°¤ë‚˜ë¬´",7)};
       
       for(Countable e: m)
          e.count();
